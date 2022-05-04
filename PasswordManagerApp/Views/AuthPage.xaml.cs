@@ -24,7 +24,7 @@ namespace PasswordManagerApp.Views
 
         private void GoToSignUpButton_Clicked(object sender, EventArgs e)
         {
-
+            
         }
     }
 }

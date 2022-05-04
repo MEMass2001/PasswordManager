@@ -16,5 +16,15 @@ namespace PasswordManagerApp.Views
         {
             InitializeComponent();
         }
+
+        private void SignUpButton_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private void GoToAuthButton_Clicked(object sender, EventArgs e)
+        {
+
+        }
     }
 }
