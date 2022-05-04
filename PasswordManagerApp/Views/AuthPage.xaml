@@ -1,12 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PasswordManagerApp.Views.AuthPage">
+             x:Class="PasswordManagerApp.Views.AuthPage" 
+             Title="Авторизация"
+             Background="{StaticResource MainColor}"
+             NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Frame Style="{StaticResource AuthFrame}">
+                <StackLayout>
+                    <Label Style="{StaticResource AuthLabel}" Text="Авторизация"/>
+                    <Entry x:Name="LoginEntry" Placeholder="Email" Keyboard="Email" TabIndex="0"/>
+                    <Entry x:Name="PasswordEntry" IsPassword="True" Placeholder="Пароль" TabIndex="1"/>
+                    <Button Style="{StaticResource MainButton}" Text="Войти" x:Name="AuthButton" Clicked="AuthButton_Clicked" TabIndex="2" IsTabStop="True"/>
+                    <Button Style="{StaticResource RevertedButton}" Text="Регистрация" x:Name="GoToSignUpButton" Clicked="GoToSignUpButton_Clicked"/>
+                </StackLayout>
+            </Frame>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

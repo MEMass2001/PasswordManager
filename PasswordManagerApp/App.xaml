@@ -3,6 +3,52 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PasswordManagerApp.App">
     <Application.Resources>
+        <ResourceDictionary>
+            <SolidColorBrush x:Key="MainColor" Color="#7366FF"/>
+            <SolidColorBrush x:Key="SecondaryColor" Color="#C9C4FF"/>
+            <SolidColorBrush x:Key="AttentionColor" Color="#372EA3"/>
+            
+            <Style x:Key="MainFrame" TargetType="Frame">
+                <Setter Property="CornerRadius" Value="15"/>
+                <Setter Property="Background" Value="{StaticResource SecondaryColor}"/>
+                <Setter Property="Margin" Value="10"/>
+                <Setter Property="HorizontalOptions" Value="StartAndExpand"/>
+                <Setter Property="VerticalOptions" Value="Start"/>
+                <Setter Property="WidthRequest" Value="300"/>
+            </Style>
+            <Style BasedOn="{StaticResource MainFrame}" x:Key="AuthFrame" TargetType="Frame">
+                <Setter Property="Background" Value="{StaticResource SecondaryColor}"/>
+            </Style>
+            
+            <Style x:Key="MainButton" TargetType="Button">
+                <Setter Property="CornerRadius" Value="15"/>
+                <Setter Property="BorderWidth" Value="3"/>
+                <Setter Property="BorderColor" Value="White"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="Background" Value="{StaticResource AttentionColor}"/>
+                <Setter Property="HeightRequest" Value="50"/>
+                <Setter Property="Padding" Value="10"/>
+                <Setter Property="Margin" Value="10"/>
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+                <Setter Property="WidthRequest" Value="300"/>
+            </Style>
+            <Style BasedOn="{StaticResource MainButton}" x:Key="RevertedButton" TargetType="Button">
+                <Setter Property="BorderColor" Value="#372EA3"/>
+                <Setter Property="TextColor" Value="#372EA3"/>
+                <Setter Property="Background" Value="White"/>
+            </Style>
 
+            <Style x:Key="MainLabel" TargetType="Label">
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontSize" Value="30"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+            </Style>
+            <Style BasedOn="{StaticResource MainLabel}" x:Key="AuthLabel" TargetType="Label">
+                <Setter Property="TextColor" Value="Black"/>
+            </Style>
+
+            <Style x:Key="MainInput" TargetType="Entry">
+            </Style>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
