@@ -1,12 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PasswordManagerApp.Views.SettingsPage">
+             x:Class="PasswordManagerApp.Views.SettingsPage"
+             Title="Настройки"
+             Background="{StaticResource SecondaryColor}"
+             NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="85"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Frame Style="{StaticResource NavFrame}" HorizontalOptions="Fill">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="65"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Настройки" Style="{StaticResource MainLabel}" HorizontalOptions="Fill"/> 
+                    <ImageButton x:Name="BackButton" HeightRequest="60" Source="@drawable/backicon.png" Grid.Column="1" BackgroundColor="Transparent" Background="Transparent" Clicked="BackButton_Clicked"/>
+                </Grid>
+            </Frame>
+            <Frame Style="{StaticResource MainFrame}" Grid.Row="1">
+                <StackLayout>
+                    
+                </StackLayout>
+            </Frame>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

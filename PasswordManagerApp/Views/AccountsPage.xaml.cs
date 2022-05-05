@@ -16,5 +16,15 @@ namespace PasswordManagerApp.Views
         {
             InitializeComponent();
         }
+
+        private async void SettingsButton_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new SettingsPage());
+        }
+
+        private async void AddNewAccountButton_Tapped(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new CreateNewAccountPage());
+        }
     }
 }

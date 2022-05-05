@@ -17,14 +17,15 @@ namespace PasswordManagerApp.Views
             InitializeComponent();
         }
 
-        private void AuthButton_Clicked(object sender, EventArgs e)
+        private async void AuthButton_Clicked(object sender, EventArgs e)
         {
-
+            // Сделать нормальный вход
+            await Navigation.PushAsync(new AccountsPage());
         }
 
-        private void GoToSignUpButton_Clicked(object sender, EventArgs e)
+        private async void GoToSignUpButton_Clicked(object sender, EventArgs e)
         {
-            
+            await Navigation.PushAsync(new SignUpPage());
         }
     }
 }
