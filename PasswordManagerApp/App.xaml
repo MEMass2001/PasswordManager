@@ -8,6 +8,7 @@
             <SolidColorBrush x:Key="SecondaryColor" Color="#C9C4FF"/>
             <SolidColorBrush x:Key="AttentionColor" Color="#372EA3"/>
             <SolidColorBrush x:Key="VagueColor" Color="#EEEEEE"/>
+            <SolidColorBrush x:Key="GrayColor" Color="#939393"/>
 
             <Style x:Key="MainFrame" TargetType="Frame">
                 <Setter Property="CornerRadius" Value="15"/>
@@ -19,6 +20,12 @@
             </Style>
             <Style BasedOn="{StaticResource MainFrame}" x:Key="AuthFrame" TargetType="Frame">
                 <Setter Property="Background" Value="{StaticResource SecondaryColor}"/>
+            </Style>
+            <Style BasedOn="{StaticResource MainFrame}" x:Key="InputFrame" TargetType="Frame">
+                <Setter Property="Background" Value="White"/>
+                <Setter Property="Padding" Value="10"/>
+                <Setter Property="Margin" Value="0"/>
+                <Setter Property="BorderColor" Value="{StaticResource GrayColor}"/>
             </Style>
 
             <Style x:Key="NavFrame" TargetType="Frame">
@@ -55,9 +62,6 @@
                 <Setter Property="TextColor" Value="Black"/>
             </Style>
 
-            <Style x:Key="MainInput" TargetType="Entry">
-            </Style>
-            
         </ResourceDictionary>
     </Application.Resources>
 </Application>

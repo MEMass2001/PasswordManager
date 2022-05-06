@@ -24,7 +24,7 @@ namespace PasswordManagerApp.Views
 
         private async void GoToAuthButton_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new AuthPage());
+            await Navigation.PushAsync(new AuthPage(), false);
         }
     }
 }

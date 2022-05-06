@@ -10,7 +10,7 @@ namespace PasswordManagerApp
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new Views.AuthPage());
+            MainPage = new NavigationPage(new Views.AccountsPage());
         }
 
         protected override void OnStart()

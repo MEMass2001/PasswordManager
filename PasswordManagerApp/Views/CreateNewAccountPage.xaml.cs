@@ -20,7 +20,7 @@ namespace PasswordManagerApp.Views
 
         private async void BackButton_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new AccountsPage());
+            await Navigation.PushAsync(new AccountsPage(), false);
         }
 
         private void AddAccountButton_Clicked(object sender, EventArgs e)

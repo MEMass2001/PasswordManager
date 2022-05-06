@@ -10,8 +10,12 @@
             <Frame Style="{StaticResource AuthFrame}">
                 <StackLayout>
                     <Label Style="{StaticResource AuthLabel}" Text="Авторизация"/>
-                    <Entry x:Name="LoginEntry" Placeholder="Email" Keyboard="Email" TabIndex="0"/>
-                    <Entry x:Name="PasswordEntry" IsPassword="True" Placeholder="Пароль" TabIndex="1"/>
+                    <Frame Style="{StaticResource InputFrame}">
+                        <Entry x:Name="LoginEntry" Placeholder="Email" Keyboard="Email" TabIndex="0"/>
+                    </Frame>
+                    <Frame Style="{StaticResource InputFrame}">
+                        <Entry x:Name="PasswordEntry" IsPassword="True" Placeholder="Пароль" TabIndex="1"/>
+                    </Frame>
                     <Button Style="{StaticResource MainButton}" Text="Войти" x:Name="AuthButton" Clicked="AuthButton_Clicked" TabIndex="2" IsTabStop="True"/>
                     <Button Style="{StaticResource RevertedButton}" Text="Регистрация" x:Name="GoToSignUpButton" Clicked="GoToSignUpButton_Clicked"/>
                 </StackLayout>

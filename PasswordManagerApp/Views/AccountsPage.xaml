@@ -27,22 +27,14 @@
             <Entry x:Name="SearchEntry" Grid.Row="2" Placeholder="Поиск по названию" Keyboard="Text" WidthRequest="300"/>
             <Frame Style="{StaticResource MainFrame}" Grid.Row="3">
                 <StackLayout>
-                    <StackLayout Orientation="Horizontal" x:Name="AddNewAccountButton" VerticalOptions="Center" HorizontalOptions="Fill" Margin="5" HeightRequest="100">
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Fill" Margin="5" HeightRequest="100">
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer Tapped="AddNewAccountButton_Tapped"/>
                         </StackLayout.GestureRecognizers>
                         <Image HeightRequest="60" WidthRequest="60" Source="@drawable/AddIcon.png" Margin="15"/>
-                        <Label Text="Добавить новую учётную запись" TextColor="Gray" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        <Label Text="Добавить новую учётную запись" TextColor="{StaticResource GrayColor}" HorizontalOptions="Center" VerticalOptions="Center"/>
                     </StackLayout>
-                    <ListView x:Name="AccountsListView" RowHeight="100">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <Grid>
-                                    
-                                </Grid>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+                    
                 </StackLayout>
             </Frame>
         </Grid>

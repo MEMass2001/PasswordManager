@@ -19,12 +19,12 @@ namespace PasswordManagerApp.Views
 
         private async void SettingsButton_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new SettingsPage());
+            await Navigation.PushAsync(new SettingsPage(), false);
         }
 
         private async void AddNewAccountButton_Tapped(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new CreateNewAccountPage());
+            await Navigation.PushAsync(new CreateNewAccountPage(), false);
         }
     }
 }
