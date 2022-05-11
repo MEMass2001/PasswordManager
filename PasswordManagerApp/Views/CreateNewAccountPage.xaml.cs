@@ -15,7 +15,6 @@ namespace PasswordManagerApp.Views
         public CreateNewAccountPage()
         {
             InitializeComponent();
-            ServiceImage.Source = "@drawable/OtherService.png";
         }
 
         private async void BackButton_Clicked(object sender, EventArgs e)

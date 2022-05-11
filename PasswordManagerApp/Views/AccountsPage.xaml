@@ -9,8 +9,8 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="85"/>
-                <RowDefinition Height="55"/>
-                <RowDefinition Height="55"/>
+                <RowDefinition Height="65"/>
+                <RowDefinition Height="65"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Frame Style="{StaticResource NavFrame}" HorizontalOptions="Fill">
@@ -23,18 +23,20 @@
                     <ImageButton x:Name="SettingsButton" HeightRequest="60" Source="@drawable/SettingsIcon.png" Grid.Column="1" BackgroundColor="Transparent" Background="Transparent" Clicked="SettingsButton_Clicked"/>
                 </Grid>
             </Frame>
-            <Picker x:Name="ServicePicker" Grid.Row="1" WidthRequest="300"/>
-            <Entry x:Name="SearchEntry" Grid.Row="2" Placeholder="Поиск по названию" Keyboard="Text" WidthRequest="300"/>
+            <Frame Style="{StaticResource InputFrame}" Grid.Row="1" HorizontalOptions="Fill" VerticalOptions="Fill">
+                <Picker x:Name="ServicePicker" WidthRequest="300"/>
+            </Frame>
+            <Frame Style="{StaticResource InputFrame}" Grid.Row="2" HorizontalOptions="Fill" VerticalOptions="Fill">
+                <Entry x:Name="SearchEntry" Placeholder="Поиск по названию" Keyboard="Text" WidthRequest="300"/>
+            </Frame>
             <Frame Style="{StaticResource MainFrame}" Grid.Row="3">
                 <StackLayout>
-                    <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Fill" Margin="5" HeightRequest="100">
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="AddNewAccountButton_Tapped"/>
-                        </StackLayout.GestureRecognizers>
-                        <Image HeightRequest="60" WidthRequest="60" Source="@drawable/AddIcon.png" Margin="15"/>
-                        <Label Text="Добавить новую учётную запись" TextColor="{StaticResource GrayColor}" HorizontalOptions="Center" VerticalOptions="Center"/>
-                    </StackLayout>
-                    
+                    <Button x:Name="AddNewAccountButton" Text="Добавить учётную запись" Style="{StaticResource MainButton}" Clicked="AddNewAccountButton_Clicked"/>
+                    <ScrollView>
+                        <ListView x:Name="AccountsListView">
+
+                        </ListView>
+                    </ScrollView>
                 </StackLayout>
             </Frame>
         </Grid>

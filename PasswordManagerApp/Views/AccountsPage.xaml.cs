@@ -22,7 +22,7 @@ namespace PasswordManagerApp.Views
             await Navigation.PushAsync(new SettingsPage(), false);
         }
 
-        private async void AddNewAccountButton_Tapped(object sender, EventArgs e)
+        private async void AddNewAccountButton_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new CreateNewAccountPage(), false);
         }

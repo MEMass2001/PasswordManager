@@ -24,12 +24,20 @@
             <Frame Style="{StaticResource MainFrame}" Grid.Row="1">
                 <StackLayout>
                     <StackLayout Orientation="Horizontal">
-                        <Image x:Name="ServiceImage" HeightRequest="80" WidthRequest="80" Margin="5"/>
-                        <Picker x:Name="ServicePicker" WidthRequest="200" Margin="5"/>
+                        <Image x:Name="ServiceImage" HeightRequest="80" WidthRequest="80" Margin="5" Source="@drawable/OtherServiceIcon.png"/>
+                        <Frame Style="{StaticResource InputFrame}">
+                            <Picker x:Name="ServicePicker" WidthRequest="180" Margin="5"/>
+                        </Frame>
                     </StackLayout>
-                    <Entry x:Name="AccountTitleEntry" Placeholder="Название учётной записи"/>
-                    <Entry x:Name="LoginEntry" Placeholder="Логин"/>
-                    <Entry x:Name="PasswordEntry" Placeholder="Пароль"/>
+                    <Frame Style="{StaticResource InputFrame}">
+                        <Entry x:Name="AccountTitleEntry" Placeholder="Название учётной записи"/>
+                    </Frame>
+                    <Frame Style="{StaticResource InputFrame}">
+                        <Entry x:Name="LoginEntry" Placeholder="Логин"/>
+                    </Frame>
+                    <Frame Style="{StaticResource InputFrame}">
+                        <Entry x:Name="PasswordEntry" Placeholder="Пароль"/>
+                    </Frame>
                     <Button Style="{StaticResource MainButton}" x:Name="AddAccountButton" Text="Добавить" Clicked="AddAccountButton_Clicked"/>
                 </StackLayout>
             </Frame>
