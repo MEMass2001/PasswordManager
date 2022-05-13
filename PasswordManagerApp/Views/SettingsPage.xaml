@@ -23,7 +23,7 @@
             </Frame>
             <Frame Style="{StaticResource MainFrame}" Grid.Row="1">
                 <StackLayout>
-                    
+                    <Switch/>
                 </StackLayout>
             </Frame>
         </Grid>
