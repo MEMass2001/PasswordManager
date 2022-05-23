@@ -26,7 +26,7 @@
                     <StackLayout Orientation="Horizontal">
                         <Image x:Name="ServiceImage" HeightRequest="80" WidthRequest="80" Margin="5" Source="@drawable/OtherServiceIcon.png"/>
                         <Frame Style="{StaticResource InputFrame}">
-                            <Picker x:Name="ServicePicker" WidthRequest="180" Margin="5"/>
+                            <Picker x:Name="ServicePicker" WidthRequest="180" Margin="5" SelectedIndexChanged="ServicePicker_SelectedIndexChanged"/>
                         </Frame>
                     </StackLayout>
                     <Frame Style="{StaticResource InputFrame}">
@@ -39,6 +39,7 @@
                         <Entry x:Name="PasswordEntry" Placeholder="Пароль"/>
                     </Frame>
                     <Button Style="{StaticResource MainButton}" x:Name="AddAccountButton" Text="Добавить" Clicked="AddAccountButton_Clicked"/>
+                    <Label x:Name="ErrorLabel" Text="Добавления не произошло. Все поля должны быть заполнены." IsVisible="false"/>
                 </StackLayout>
             </Frame>
         </Grid>
