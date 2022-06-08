@@ -29,25 +29,41 @@ namespace PasswordManagerApp.Views
         private async void SignUpButton_Clicked(object sender, EventArgs e)
         {
             string toastMessage = null;
-            if (PasswordEntry.Text == PasswordRepeatEntry.Text)
+            if (!string.IsNullOrWhiteSpace(LoginEntry.Text) && !string.IsNullOrWhiteSpace(PasswordEntry.Text))
             {
-                ApiFrame<AuthResponse> response = usersCtrl.SignUpUser(LoginEntry.Text, string.Join(" ", SHA256.Create().ComputeHash(Encoding.UTF8.GetBytes(PasswordEntry.Text))));
-                if (response.Status == "success")
+                if (PasswordEntry.Text == PasswordRepeatEntry.Text)
                 {
-                    Manager.currentUserEmail = LoginEntry.Text;
-                    Manager.currentUserPassword = PasswordEntry.Text;
-                    await Navigation.PushAsync(new AccountsPage());
-                    toastMessage = response.Data.Message;
+                    string hashed_password = string.Join(" ", SHA256.Create().ComputeHash(Encoding.UTF8.GetBytes(PasswordEntry.Text)));
+                    ApiFrame<AuthResponse> response = usersCtrl.SignUpUser(LoginEntry.Text, hashed_password);
+                    if (response.Status == "success")
+                    {
+                        Manager.currentUserEmail = LoginEntry.Text;
+                        Manager.currentUserPassword = PasswordEntry.Text;
+                        try
+                        {
+                            Manager.currentUserSettings = usersCtrl.GetUserSettings(LoginEntry.Text, hashed_password);
+                        }
+                        catch
+                        {
+                            Manager.currentUserSettings = new List<Setting>();
+                        }
+                        await Navigation.PushAsync(new AccountsPage());
+                        toastMessage = response.Data.Message;
+                    }
+                    else
+                    {
+                        toastMessage = response.Data.Message;
+                    }
+                    Console.WriteLine(response.Status + " " + response.Data.Message);
                 }
                 else
                 {
-                    toastMessage = response.Data.Message;
+                    toastMessage = "Введённые пароли не совпадают";
                 }
-                Console.WriteLine(response.Status+" "+response.Data.Message);
             }
             else
             {
-                toastMessage = "Введённые пароли не совпадают";
+                toastMessage = "Поля Email и пароль обязательны к заполнению";
             }
             MessageLabel.IsVisible = true;
             MessageLabel.Text = toastMessage;

@@ -9,5 +9,6 @@ namespace PasswordManagerApp.Models
         public static string apiUrl = "http://www.pmapi2.somee.com/api/";
         public static string currentUserEmail;
         public static string currentUserPassword;
+        public static List<Setting> currentUserSettings;
     }
 }

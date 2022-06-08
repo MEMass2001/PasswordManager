@@ -18,6 +18,9 @@ namespace PasswordManagerApp.Views
         public AccountsPage()
         {
             InitializeComponent();
+
+            Console.WriteLine($"{Manager.currentUserSettings} <================ HERE");
+
             List<Service> services = _acntCtrl.GetServices().Data;
             List<string> serviceNames = new List<string>();
             serviceNames.Add("Все");

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Xamarin.Essentials;
 
 namespace PasswordManagerApp.Views
 {
@@ -22,22 +23,45 @@ namespace PasswordManagerApp.Views
             InitializeComponent();
             Manager.currentUserEmail = null;
             Manager.currentUserPassword = null;
+            
+            if (Preferences.Get("remember_me", false) && !string.IsNullOrWhiteSpace(Preferences.Get("email", null)) && !string.IsNullOrWhiteSpace(Preferences.Get("password", null)))
+            {
+                Auth(Preferences.Get("email", null), Preferences.Get("password", null));
+            }
         }
 
-        private async void AuthButton_Clicked(object sender, EventArgs e)
+        private void AuthButton_Clicked(object sender, EventArgs e)
         {
-            string toastMessage = null;
-            ApiFrame<AuthResponse> response = usersCtrl.AuthUser(LoginEntry.Text, string.Join(" ", SHA256.Create().ComputeHash(Encoding.UTF8.GetBytes(PasswordEntry.Text))));
-            if (response.Status == "success")
+            if(!string.IsNullOrWhiteSpace(LoginEntry.Text) && !string.IsNullOrWhiteSpace(PasswordEntry.Text))
             {
-                Manager.currentUserEmail = LoginEntry.Text;
-                Manager.currentUserPassword = PasswordEntry.Text;
-                await Navigation.PushAsync(new AccountsPage());
-                toastMessage = response.Data.Message;
+                Auth(LoginEntry.Text, PasswordEntry.Text);
             }
             else
             {
-                toastMessage = response.Data.Message;
+                MessageLabel.IsVisible = true;
+                MessageLabel.Text = "Поля Еmail и пароль обязательны к заполнению";
+            }
+        }
+        private async void Auth(string loginString, string passwordString)
+        {
+            string hashed_password = string.Join(" ", SHA256.Create().ComputeHash(Encoding.UTF8.GetBytes(passwordString)));
+            ApiFrame<AuthResponse> response = usersCtrl.AuthUser(loginString, hashed_password);
+
+            string toastMessage = response.Data.Message;
+            if (response.Status == "success")
+            {
+                Manager.currentUserEmail = loginString;
+                Manager.currentUserPassword = passwordString;
+                try
+                {
+                    Manager.currentUserSettings = usersCtrl.GetUserSettings(loginString, hashed_password);
+                }
+                catch
+                {
+                    Manager.currentUserSettings = new List<Setting>();
+                }
+
+                await Navigation.PushAsync(new AccountsPage());
             }
             Console.WriteLine(response.Status + " " + response.Data.Message);
             MessageLabel.IsVisible = true;

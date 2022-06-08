@@ -23,7 +23,19 @@
             </Frame>
             <Frame Style="{StaticResource MainFrame}" Grid.Row="1">
                 <StackLayout>
-                    <Switch/>
+                    <ListView x:Name="SettingsListView">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Switch IsToggled="{Binding Value}" x:Name="SettingSwitch" Toggled="SettingSwitch_Toggled"/>
+                                        <Label Text="{Binding Name}"/>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <Button Text="Выйти из учётной записи" x:Name="QuitButton" Style="{StaticResource MainButton}" Clicked="QuitButton_Clicked"/>
                 </StackLayout>
             </Frame>
         </Grid>
