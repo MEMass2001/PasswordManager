@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Xamarin.Essentials;
 
 namespace PasswordManagerApp.Models
 {
@@ -23,13 +24,15 @@ namespace PasswordManagerApp.Models
         public int ServiceId { get; set; }
         [JsonProperty("userEmail")]
         public string UserEmail { get; set; }
+        [JsonIgnore]
         public string AccountImage { 
             get 
             {
                 List<Service> services = acntCtrl.GetServices().Data;
                 return $"@drawable/{services.Where(x => x.Id == ServiceId).FirstOrDefault().Image}";
-            } 
+            }
         }
+        [JsonIgnore]
         public string DecipheredLogin
         {
             get
@@ -37,11 +40,20 @@ namespace PasswordManagerApp.Models
                 return IdeaCipher.cryptString(AccountLogin, Manager.currentUserPassword, false);
             }
         }
+        [JsonIgnore]
         public string DecipheredPassword
         {
             get
             {
                 return IdeaCipher.cryptString(AccountPassword, Manager.currentUserPassword, false);
+            }
+        }
+        [JsonIgnore]
+        public bool ClearData
+        {
+            get
+            {
+                return Preferences.Get("show_clear", false);
             }
         }
     }

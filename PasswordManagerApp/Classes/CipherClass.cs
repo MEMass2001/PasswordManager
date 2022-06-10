@@ -12,77 +12,95 @@ namespace PasswordManagerApp.Classes
         private static int blockSize = 8;
         public static string cryptString(string input, string key, bool encrypt)
         {
-            Stream inStream = null;
-            Stream outStream = new MemoryStream();
-            try
+            if (!string.IsNullOrWhiteSpace(input) && !string.IsNullOrWhiteSpace(key))
             {
-                Idea idea = new Idea(key, encrypt);
-                BlockStreamCrypter bsc = new BlockStreamCrypter(idea, encrypt);
-                long inStreamSize;
-                long inDataLen;
-                long outDataLen;
-                if (encrypt)
+                bool isGood = true;
+                foreach (string item in input.Split(' '))
                 {
-                    inStream = StringToStream(input);
-                    inStreamSize = inStream.Length;
-                    inDataLen = inStreamSize;
-                    outDataLen = (inDataLen + blockSize - 1) / blockSize * blockSize;
-                }
-                else
-                {
-                    string[] values = input.Split(' ');
-                    byte[] bytes = new byte[values.Length];
-                    for (int i = 0; i < values.Length; i++)
+                    if (!item.All(char.IsDigit))
                     {
-                        bytes[i] = Byte.Parse(values[i]);
+                        isGood = false; 
                     }
-                    inStream = new MemoryStream(bytes);
-                    //inStream = StringToStream(input);
-                    inStreamSize = inStream.Length;
-                    if (inStreamSize == 0)
+                }
+                if (encrypt || (input.Split(' ').Length % 8 == 0 && isGood)){
+                    Stream inStream = null;
+                    Stream outStream = new MemoryStream();
+                    try
                     {
-                        throw new IOException("Input Stream Size is empty.");
+                        Idea idea = new Idea(key, encrypt);
+                        BlockStreamCrypter bsc = new BlockStreamCrypter(idea, encrypt);
+                        long inStreamSize;
+                        long inDataLen;
+                        long outDataLen;
+                        if (encrypt)
+                        {
+                            inStream = StringToStream(input);
+                            inStreamSize = inStream.Length;
+                            inDataLen = inStreamSize;
+                            outDataLen = (inDataLen + blockSize - 1) / blockSize * blockSize;
+                        }
+                        else
+                        {
+                            string[] values = input.Split(' ');
+                            byte[] bytes = new byte[values.Length];
+                            for (int i = 0; i < values.Length; i++)
+                            {
+                                bytes[i] = Byte.Parse(values[i]);
+                            }
+                            inStream = new MemoryStream(bytes);
+                            //inStream = StringToStream(input);
+                            inStreamSize = inStream.Length;
+                            if (inStreamSize == 0)
+                            {
+                                throw new IOException("Input Stream Size is empty.");
+                            }
+                            if (inStreamSize % blockSize != 0)
+                            {
+                                throw new IOException("Input stream size is not a multiple of " + blockSize + ".");
+                            }
+                            inDataLen = inStreamSize - blockSize;
+                            outDataLen = inDataLen;
+                        }
+                        processData(inStream, inDataLen, outStream, outDataLen, bsc);
+                        if (encrypt)
+                        {
+                            outStream = writeDataLength(outStream, inDataLen, bsc);
+                            return string.Join(" ", StreamToBytes(outStream));
+                            //return StreamToString(outStream);
+                        }
+                        else
+                        {
+                            long outFileSize = readDataLength(inStream, bsc);
+                            //if (outFileSize < 0 || outFileSize > inDataLen || outFileSize < inDataLen - blockSize + 1)
+                            //{
+                            //    throw new IOException("Input file is not a valid cryptogram.");
+                            //}
+                            //if (outFileSize != outDataLen)
+                            //{
+                            //    inStream.SetLength(outFileSize);
+                            //}
+                            return StreamToString(outStream);
+                        }
                     }
-                    if (inStreamSize % blockSize != 0)
+                    finally
                     {
-                        throw new IOException("Input stream size is not a multiple of " + blockSize + ".");
+                        if (inStream != null)
+                        {
+                            inStream.Close();
+                        }
+                        if (outStream != null)
+                        {
+                            outStream.Close();
+                        }
                     }
-                    inDataLen = inStreamSize - blockSize;
-                    outDataLen = inDataLen;
+                    return null;
                 }
-                processData(inStream, inDataLen, outStream, outDataLen, bsc);
-                if (encrypt)
-                {
-                    outStream = writeDataLength(outStream, inDataLen, bsc);
-                    return string.Join(" ", StreamToBytes(outStream));
-                    //return StreamToString(outStream);
-                }
-                else
-                {
-                    long outFileSize = readDataLength(inStream, bsc);
-                    //if (outFileSize < 0 || outFileSize > inDataLen || outFileSize < inDataLen - blockSize + 1)
-                    //{
-                    //    throw new IOException("Input file is not a valid cryptogram.");
-                    //}
-                    //if (outFileSize != outDataLen)
-                    //{
-                    //    inStream.SetLength(outFileSize);
-                    //}
-                    return StreamToString(outStream);
-                }
+                else return null;
             }
-            finally
+            else
             {
-                if (inStream != null)
-                {
-                    inStream.Close();
-                }
-                if (outStream != null)
-                {
-                    outStream.Close();
-                }
+                return null;
             }
-            return null;
         }
         public static byte[] StreamToBytes(Stream input)
         {

@@ -21,7 +21,19 @@
                     <ImageButton x:Name="BackButton" HeightRequest="60" Source="@drawable/backicon.png" Grid.Column="1" BackgroundColor="Transparent" Background="Transparent" Clicked="BackButton_Clicked"/>
                 </Grid>
             </Frame>
-            <Frame Style="{StaticResource MainFrame}" Grid.Row="1">
+            <Frame x:Name="LoginDataFrame" Style="{StaticResource MainFrame}" IsVisible="false" Grid.Row="1">
+                <StackLayout>
+                    <Frame Style="{StaticResource InputFrame}">
+                        <Entry x:Name="LoginEntry" Placeholder="Email" Keyboard="Email" TabIndex="0"/>
+                    </Frame>
+                    <Frame Style="{StaticResource InputFrame}">
+                        <Entry x:Name="PasswordEntry" IsPassword="True" Placeholder="Пароль" TabIndex="1"/>
+                    </Frame>
+                    <Button Style="{StaticResource MainButton}" Text="Открыть" x:Name="OpenButton" Clicked="OpenButton_Clicked" TabIndex="2" IsTabStop="True"/>
+                    <Label Text="Неверный логин или пароль" x:Name="ErrorLabel" TextColor="Black" IsVisible="false"/>
+                </StackLayout>
+            </Frame>
+            <Frame x:Name="AccountDataFrame" Style="{StaticResource MainFrame}" Grid.Row="1">
                 <StackLayout>
                     <StackLayout Orientation="Horizontal">
                         <Label Text="Логин:" TextColor="Black" WidthRequest="150" VerticalOptions="Center" FontSize="20"/>

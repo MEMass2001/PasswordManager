@@ -14,9 +14,9 @@
                 <Setter Property="CornerRadius" Value="15"/>
                 <Setter Property="Background" Value="{StaticResource VagueColor}"/>
                 <Setter Property="Margin" Value="10"/>
-                <Setter Property="HorizontalOptions" Value="StartAndExpand"/>
+                <Setter Property="HorizontalOptions" Value="Fill"/>
                 <Setter Property="VerticalOptions" Value="Start"/>
-                <Setter Property="WidthRequest" Value="300"/>
+                <!--<Setter Property="WidthRequest" Value="Fill"/>-->
             </Style>
             <Style BasedOn="{StaticResource MainFrame}" x:Key="AuthFrame" TargetType="Frame">
                 <Setter Property="Background" Value="{StaticResource SecondaryColor}"/>

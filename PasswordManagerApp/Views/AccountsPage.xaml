@@ -38,7 +38,11 @@
                                 <ViewCell Tapped="ViewCell_Tapped">
                                     <StackLayout Orientation="Horizontal" HeightRequest="100">
                                         <Image HeightRequest="100" WidthRequest="100" Source="{Binding AccountImage}"/>
-                                        <Label Text="{Binding Title}" TextColor="Black" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                        <StackLayout>
+                                            <Label Text="{Binding Title}" TextColor="Black" FontSize="20" VerticalOptions="Center" HorizontalOptions="Start"/>
+                                            <Label IsVisible="{Binding ClearData}" Text="{Binding DecipheredLogin, StringFormat='Email: {0}'}" TextColor="Black" FontSize="15" VerticalOptions="Center" HorizontalOptions="Start"/>
+                                            <Label IsVisible="{Binding ClearData}" Text="{Binding DecipheredPassword, StringFormat='Пароль: {0}'}" TextColor="Black" FontSize="15" VerticalOptions="Center" HorizontalOptions="Start"/>
+                                        </StackLayout>
                                     </StackLayout>
                                 </ViewCell>
                             </DataTemplate>
