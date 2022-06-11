@@ -44,8 +44,8 @@
                 <Setter Property="HeightRequest" Value="50"/>
                 <Setter Property="Padding" Value="10"/>
                 <Setter Property="Margin" Value="10"/>
-                <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
-                <Setter Property="WidthRequest" Value="300"/>
+                <Setter Property="HorizontalOptions" Value="Fill"/>
+                <!--<Setter Property="WidthRequest" Value="300"/>-->
             </Style>
             <Style BasedOn="{StaticResource MainButton}" x:Key="RevertedButton" TargetType="Button">
                 <Setter Property="BorderColor" Value="#372EA3"/>
@@ -55,10 +55,19 @@
 
             <Style x:Key="MainLabel" TargetType="Label">
                 <Setter Property="TextColor" Value="White"/>
-                <Setter Property="FontSize" Value="30"/>
+                <Setter Property="FontSize" Value="22"/>
                 <Setter Property="HorizontalOptions" Value="Center"/>
             </Style>
             <Style BasedOn="{StaticResource MainLabel}" x:Key="AuthLabel" TargetType="Label">
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="FontSize" Value="30"/>
+            </Style>
+
+            <Style TargetType="Entry">
+                <Setter Property="TextColor" Value="Black"/> 
+            </Style>
+
+            <Style TargetType="Picker">
                 <Setter Property="TextColor" Value="Black"/>
             </Style>
 

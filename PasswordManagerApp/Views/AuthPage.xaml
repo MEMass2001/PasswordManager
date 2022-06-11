@@ -18,7 +18,7 @@
                     </Frame>
                     <Button Style="{StaticResource MainButton}" Text="Войти" x:Name="AuthButton" Clicked="AuthButton_Clicked" TabIndex="2" IsTabStop="True"/>
                     <Button Style="{StaticResource RevertedButton}" Text="Регистрация" x:Name="GoToSignUpButton" Clicked="GoToSignUpButton_Clicked"/>
-                    <Label x:Name="MessageLabel"/>
+                    <Label x:Name="MessageLabel" LineBreakMode="WordWrap"/>
                 </StackLayout>
             </Frame>
         </StackLayout>

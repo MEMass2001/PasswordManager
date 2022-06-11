@@ -119,5 +119,20 @@ namespace PasswordManagerApp.Controllers
             string result = response.Result.Content.ReadAsStringAsync().Result;
             return JsonConvert.DeserializeObject<ApiFrame<string>>(result);
         }
+
+        public ApiFrame<string> DeleteAccount(int accountId)
+        {
+            User newUser = new User 
+            { 
+                Email = Manager.currentUserEmail, 
+                Password = string.Join(" ", SHA256.Create().ComputeHash(Encoding.UTF8.GetBytes(Manager.currentUserPassword))) 
+            };
+            string json = JsonConvert.SerializeObject(newUser, Formatting.None);
+            Console.WriteLine(json);
+            var requestBody = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = client.PostAsync(Manager.apiUrl + $"accounts/delete/{accountId}", requestBody);
+            string result = response.Result.Content.ReadAsStringAsync().Result;
+            return JsonConvert.DeserializeObject<ApiFrame<string>>(result);
+        }
     }
 }

@@ -16,9 +16,11 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <ColumnDefinition Width="65"/>
+                        <ColumnDefinition Width="65"/>
                     </Grid.ColumnDefinitions>
-                    <Label Text="Редактирование" Style="{StaticResource MainLabel}" HorizontalOptions="Fill"/>
+                    <Label Text="Редактирование" Style="{StaticResource MainLabel}" HorizontalOptions="Fill" LineBreakMode="WordWrap"/>
                     <ImageButton x:Name="BackButton" HeightRequest="60" Source="@drawable/backicon.png" Grid.Column="1" BackgroundColor="Transparent" Background="Transparent" Clicked="BackButton_Clicked"/>
+                    <ImageButton x:Name="Exit" HeightRequest="60" Source="@drawable/exitButton.png" Grid.Column="2" BackgroundColor="Transparent" Background="Transparent" Clicked="ExitButton_Clicked"/>
                 </Grid>
             </Frame>
             <Frame Style="{StaticResource MainFrame}" Grid.Row="1">
@@ -39,7 +41,7 @@
                         <Entry x:Name="PasswordEntry" Placeholder="Пароль"/>
                     </Frame>
                     <Button Style="{StaticResource MainButton}" x:Name="SaveAccountButton" Text="Сохранить" Clicked="SaveAccountButton_Clicked"/>
-                    <Label x:Name="ErrorLabel" Text="Изменения не произошло. Все поля должны быть заполнены." IsVisible="false"/>
+                    <Label x:Name="ErrorLabel" Text="Изменения не произошло. Все поля должны быть заполнены." IsVisible="false" LineBreakMode="WordWrap"/>
                 </StackLayout>
             </Frame>
         </Grid>

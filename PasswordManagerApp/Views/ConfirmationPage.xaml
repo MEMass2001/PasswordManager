@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PasswordManagerApp.Views.SettingsPage"
-             Title="Настройки"
+             x:Class="PasswordManagerApp.Views.ConfirmationPage"
+             Title="Подтверждение уделения"
              Background="{StaticResource SecondaryColor}"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
@@ -18,26 +18,23 @@
                         <ColumnDefinition Width="65"/>
                         <ColumnDefinition Width="65"/>
                     </Grid.ColumnDefinitions>
-                    <Label Text="Настройки" Style="{StaticResource MainLabel}" HorizontalOptions="Fill"/> 
+                    <Label Text="Подтверждение" Style="{StaticResource MainLabel}" HorizontalOptions="Fill" />
                     <ImageButton x:Name="BackButton" HeightRequest="60" Source="@drawable/backicon.png" Grid.Column="1" BackgroundColor="Transparent" Background="Transparent" Clicked="BackButton_Clicked"/>
+
                     <ImageButton x:Name="Exit" HeightRequest="60" Source="@drawable/exitButton.png" Grid.Column="2" BackgroundColor="Transparent" Background="Transparent" Clicked="ExitButton_Clicked"/>
                 </Grid>
             </Frame>
-            <Frame Style="{StaticResource MainFrame}" Grid.Row="1">
+            <Frame x:Name="LoginDataFrame" Style="{StaticResource MainFrame}" IsVisible="true" Grid.Row="1">
                 <StackLayout>
-                    <ListView x:Name="SettingsListView" RowHeight="60">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <StackLayout Orientation="Horizontal">
-                                        <Switch IsToggled="{Binding Value}" x:Name="SettingSwitch" Toggled="SettingSwitch_Toggled"/>
-                                        <Label Text="{Binding Name}" TextColor="Black" FontSize="20" LineBreakMode="WordWrap"/>
-                                    </StackLayout>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                    <Button Text="Выйти из учётной записи" x:Name="QuitButton" Style="{StaticResource MainButton}" Clicked="QuitButton_Clicked"/>
+                    <Label Text="{Binding Title, StringFormat='Вы хотите удалить {0}?'}" TextColor="Black" FontSize="20"/>
+                    <Frame Style="{StaticResource InputFrame}">
+                        <Entry x:Name="LoginEntry" Placeholder="Email" Keyboard="Email" TabIndex="0"/>
+                    </Frame>
+                    <Frame Style="{StaticResource InputFrame}">
+                        <Entry x:Name="PasswordEntry" IsPassword="True" Placeholder="Пароль" TabIndex="1"/>
+                    </Frame>
+                    <Button Style="{StaticResource MainButton}" Text="Удалить" x:Name="DeleteButton" Clicked="DeleteButton_Clicked" TabIndex="2" IsTabStop="True"/>
+                    <Label Text="Неверный логин или пароль" x:Name="ErrorLabel" TextColor="Black" IsVisible="false" LineBreakMode="WordWrap"/>
                 </StackLayout>
             </Frame>
         </Grid>

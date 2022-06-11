@@ -12,20 +12,21 @@ using PasswordManagerApp.Models;
 using PasswordManagerApp.Controllers;
 using PasswordManagerApp.Classes;
 using Android.Widget;
+using Android.App;
 
 namespace PasswordManagerApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CreateNewAccountPage : ContentPage
     {
-        private List<Service> _services;
+        private List<Models.Service> _services;
         private AccountsController _acntCtrl = new AccountsController();
         public CreateNewAccountPage()
         {
             InitializeComponent();
             _services = _acntCtrl.GetServices().Data;
             List<string> serviceNames = new List<string>();
-            foreach (Service service in _services)
+            foreach (Models.Service service in _services)
             {
                 serviceNames.Add(service.Name);
             }
@@ -67,6 +68,11 @@ namespace PasswordManagerApp.Views
         private void ServicePicker_SelectedIndexChanged(object sender, EventArgs e)
         {
             ServiceImage.Source = $"@drawable/{_services.Where(x => x.Name == ServicePicker.SelectedItem.ToString()).FirstOrDefault().Image}";
+        }
+
+        private void ExitButton_Clicked(object sender, EventArgs e)
+        {
+            Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
         }
     }
 }

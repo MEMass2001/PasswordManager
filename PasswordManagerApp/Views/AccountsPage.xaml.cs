@@ -1,4 +1,5 @@
-﻿using PasswordManagerApp.Controllers;
+﻿using Android.App;
+using PasswordManagerApp.Controllers;
 using PasswordManagerApp.Models;
 using System;
 using System.Collections.Generic;
@@ -21,10 +22,10 @@ namespace PasswordManagerApp.Views
 
             Console.WriteLine($"{Manager.currentUserSettings} <================ HERE");
 
-            List<Service> services = _acntCtrl.GetServices().Data;
+            List<Models.Service> services = _acntCtrl.GetServices().Data;
             List<string> serviceNames = new List<string>();
             serviceNames.Add("Все");
-            foreach (Service service in services)
+            foreach (Models.Service service in services)
             {
                 serviceNames.Add(service.Name);
             }
@@ -74,6 +75,11 @@ namespace PasswordManagerApp.Views
             Account currentAccount = tappedObj.BindingContext as Account;
             int accountId = currentAccount.Id;
             await Navigation.PushAsync(new AccountInfoPage(accountId));
+        }
+
+        private void ExitButton_Clicked(object sender, EventArgs e)
+        {
+            Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
         }
     }
 }

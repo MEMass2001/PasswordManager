@@ -18,9 +18,11 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <ColumnDefinition Width="65"/>
+                        <ColumnDefinition Width="65"/>
                     </Grid.ColumnDefinitions>
-                    <Label Text="Учётные записи" Style="{StaticResource MainLabel}" HorizontalOptions="Fill"/>
+                    <Label Text="Учётные записи" Style="{StaticResource MainLabel}" HorizontalOptions="Fill" LineBreakMode="WordWrap"/>
                     <ImageButton x:Name="SettingsButton" HeightRequest="60" Source="@drawable/SettingsIcon.png" Grid.Column="1" BackgroundColor="Transparent" Background="Transparent" Clicked="SettingsButton_Clicked"/>
+                    <ImageButton x:Name="Exit" HeightRequest="60" Source="@drawable/exitButton.png" Grid.Column="2" BackgroundColor="Transparent" Background="Transparent" Clicked="ExitButton_Clicked"/>
                 </Grid>
             </Frame>
             <Frame Style="{StaticResource InputFrame}" Grid.Row="1" HorizontalOptions="Fill" VerticalOptions="Fill">
@@ -39,9 +41,9 @@
                                     <StackLayout Orientation="Horizontal" HeightRequest="100">
                                         <Image HeightRequest="100" WidthRequest="100" Source="{Binding AccountImage}"/>
                                         <StackLayout>
-                                            <Label Text="{Binding Title}" TextColor="Black" FontSize="20" VerticalOptions="Center" HorizontalOptions="Start"/>
-                                            <Label IsVisible="{Binding ClearData}" Text="{Binding DecipheredLogin, StringFormat='Email: {0}'}" TextColor="Black" FontSize="15" VerticalOptions="Center" HorizontalOptions="Start"/>
-                                            <Label IsVisible="{Binding ClearData}" Text="{Binding DecipheredPassword, StringFormat='Пароль: {0}'}" TextColor="Black" FontSize="15" VerticalOptions="Center" HorizontalOptions="Start"/>
+                                            <Label Text="{Binding Title}" TextColor="Black" FontSize="20" VerticalOptions="Center" HorizontalOptions="Start" LineBreakMode="WordWrap"/>
+                                            <Label IsVisible="{Binding ClearData}" Text="{Binding DecipheredLogin, StringFormat='Email: {0}'}" TextColor="Black" FontSize="15" VerticalOptions="Center" HorizontalOptions="Start" LineBreakMode="WordWrap"/>
+                                            <Label IsVisible="{Binding ClearData}" Text="{Binding DecipheredPassword, StringFormat='Пароль: {0}'}" TextColor="Black" FontSize="15" VerticalOptions="Center" HorizontalOptions="Start" LineBreakMode="WordWrap"/>
                                         </StackLayout>
                                     </StackLayout>
                                 </ViewCell>

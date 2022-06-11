@@ -1,4 +1,5 @@
-﻿using PasswordManagerApp.Controllers;
+﻿using Android.App;
+using PasswordManagerApp.Controllers;
 using PasswordManagerApp.Models;
 using PasswordManagerApp.Models.Api;
 using System;
@@ -76,6 +77,16 @@ namespace PasswordManagerApp.Views
                 ErrorLabel.IsVisible = true;
                 ErrorLabel.Text = "Поля Еmail и пароль обязательны к заполнению";
             }
+        }
+
+        private async void DeleteButton_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new ConfirmationPage(this.BindingContext as Account));
+        }
+
+        private void ExitButton_Clicked(object sender, EventArgs e)
+        {
+            Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
         }
     }
 }

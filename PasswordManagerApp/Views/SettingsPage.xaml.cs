@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Android.App;
 using PasswordManagerApp.Controllers;
 using PasswordManagerApp.Models;
 using Xamarin.Essentials;
@@ -49,6 +50,11 @@ namespace PasswordManagerApp.Views
                 Preferences.Set("email", Manager.currentUserEmail);
                 Preferences.Set("password", Manager.currentUserPassword);
             }
+        }
+
+        private void ExitButton_Clicked(object sender, EventArgs e)
+        {
+            Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
         }
     }
 }

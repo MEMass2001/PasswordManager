@@ -1,4 +1,5 @@
-﻿using Android.Widget;
+﻿using Android.App;
+using Android.Widget;
 using PasswordManagerApp.Classes;
 using PasswordManagerApp.Controllers;
 using PasswordManagerApp.Models;
@@ -17,7 +18,7 @@ namespace PasswordManagerApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class EditAccountPage : ContentPage
     {
-        private List<Service> _services;
+        private List<Models.Service> _services;
         private AccountsController _acntCtrl = new AccountsController();
         public EditAccountPage(Account edtblAcnt)
         {
@@ -29,7 +30,7 @@ namespace PasswordManagerApp.Views
 
             _services = _acntCtrl.GetServices().Data;
             List<string> serviceNames = new List<string>();
-            foreach (Service service in _services)
+            foreach (Models.Service service in _services)
             {
                 serviceNames.Add(service.Name);
             }
@@ -71,6 +72,11 @@ namespace PasswordManagerApp.Views
         private async void BackButton_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new AccountsPage(), false);
+        }
+
+        private void ExitButton_Clicked(object sender, EventArgs e)
+        {
+            Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
         }
     }
 }
